@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>lista de usuario</title>
+<link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel ="stylesheet" type="text/css">
+<link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Lista de Usuarios</h1>
+
+<div class="container">
+		
+		<div class="alert-primary text-center" th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Nombre de Error</div>
+			<table class="table table-bordered border-primary">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">DNI</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">Email</th>
+						<th scope="col">Fecha de Nacimiento</th>
+						<th scope="col">Estado Actual</th>
+						<th scope="col">Edicion</th> 
+					</tr>
+				</thead>
+				<tbody class="table-secondary">
+					<tr th:if="${listaUsuario.empty}">
+						<td colspan="6">No hay usuarios cargados</td>
+					</tr>
+					<tr th:each="u : ${listadoUsuario}">
+						<td th:text="${u.dni}"></td>
+						<td th:text="${u.nombre}"></td>
+						<td th:text="${u.apellido}"></td>
+						<td th:text="${u.email}"></td>
+						<td th:text="${u.fechaNac}"></td>
+						<td th:text="${u.estado}"></td>
+						<td>
+							<a class="btn btn-warning" th:href="@{'/editarUsuario/'+${u.dni}}">Editar</a>
+							<a class="btn btn-danger" th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'"
+					    	>Eliminar</a>
+						</td>
+				
+					</tr>
+				</tbody>
+		</table>
+</div>
+		
+		<a class="btn btn-primary" th:href="@{/registroAdmin}">Volver</a>
+		
+		
+		
+
+</body>
+</html>

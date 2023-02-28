@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel ="stylesheet" type="text/css">
+<link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
+<title>FORMULARIO</title>
+</head>
+<body>
+
+<center><h1>Registrando un nuevo usuario</h1></center>
+
+<br>
+<br>
+	<div class="cotainer">
+		<div class="modal-dialog text-center">
+				<div class="modal-content">
+					<div th:insert="/layoust/hader :: header "></div>
+				
+						<form class="form" role="form" autocomplete="off" th:object="${usuario}"
+							th:action="${editMode}? @{/modificarUsuario} : @{/guardarusuario}"method ="post">
+  
+  								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{contrasena}">
+								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{dni}">
+								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{tipo}">
+  									
+  									<br>
+  									<br>
+  									
+  								<div class="mb-3">
+  									<label for="exampleInputNombre1" class="form-label">NOMBRE: </label>
+    								<input type="text" class="form-control" id="exampleInputNombre1" th:field="*{nombre}" 
+    								placeholder="Ingrese nombre completo" required>
+ 					 			</div>
+ 					 
+  								<div class="mb-3">
+  									<label for="exampleInputApellido1" class="form-label">APELLIDO: </label>
+    								<input type="text" class="form-control" id="exampleInputApellido1" th:field="*{apellido}" 
+    								placeholder="Ingrese apellido" required>
+  								</div>
+  
+  								<div class="mb-3">
+    								<label for="exampleInputEmail1" class="form-label">EMAIL: </label>
+    								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+    								placeholder="Ingrese su email, ejemplo:ej@correo.com" required th:field="*{email}">
+  								</div>
+  
+  								<div class="mb-3">
+   									<label for="exampleInputPassword1" class="form-label" th:if="${editMode==false}">CONTRASEÑA</label>
+    								<input type="password" class="form-control" id="exampleInputPassword1" th:field="*{contrasena}" 
+    								th:if="${editMode==false}" placeholder="ingrese contraseña">
+   									<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}"th:errors="*{contrasena}"></div>
+  								</div> 					
+  
+  								<div class="mb-3">
+    								<label for="dni" class="form-label" th:if="${editMode==false}">DNI</label>
+    								<input type="number" class="form-control" id="dni" th:field="*{dni}" th:if="${editMode==false}"
+    								placeholder="ingrese DNI" required>
+    								<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}"th:errors="*{dni}"></div>
+  								</div>
+  
+  								<div class="mb-3">
+    								<label for="fechaNac" class="form-label">FECHA DE NACIMIENTO</label>
+    								<input type="date" class="form-control" id="fechaNac" th:field="*{fechaNac}"placeholder="Ingrese fecha de nacimiento">
+  								</div>
+  					
+  								<div class="custom-control custom-radio">
+  									<input class="custom-control-input" type="radio" name="tipo" id="CLIENTE" value="CLIENTE" th:if="${editMode==false}">
+  									<label class="custom-control-label" for="CLIENTE" th:if="${editMode==false}">CLIENTE</label>
+								</div>
+					
+								<div class="custom-control custom-radio">
+ 						 			<input class="custom-control-input" type="radio" name="tipo" id="ADMIN" value="ADMIN" th:if="${editMode==false}">
+  									<label class="custom-control-label" for="ADMIN" th:if="${editMode==false}">ADMINISTRADOR</label>
+								</div>  					
+								
+								<div class="custom-control custom-radio">
+				 					<input type="radio" id="estado" th:field="*{estado}" class="custom-control-input" value="true" th:if="${editMode==true}">
+				 			 		<label class="custom-control-label" for="estado" th:if="${editMode==true}">Activar Estado</label>
+								</div>
+			
+								<div class="custom-control custom-radio">
+				 			 		<input type="radio" id="estadoInactivo" th:field="*{estado}" class="custom-control-input" value="false" th:if="${editMode==true}">
+				 			 		<label class="custom-control-label" for="estadoInactivo" th:if="${editMode==true}">Inactivo</label>
+								</div>
+					
+  								<br>	
+  					
+ 					 			<button type="submit" class="btn btn-dark"><span th:text="${editMode}? 'modificar' : 'Guardar Usuario' "></span></button>
+						
+				
+								<br>
+								<br>
+						
+						</form>
+			
+					</div>
+				</div>
+				
+			</div>
+			
+						<a class="btn btn-light" th:href="@{/registroAdmin}">Volver</a>
+			
+						
+	</body>
+
+</html>

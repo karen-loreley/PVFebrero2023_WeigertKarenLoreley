@@ -1,0 +1,20 @@
+body{
+  background:url(../img/2.jpg) no-repeat fixed center center #333;
+    background-size: cover;
+	margin-left:150px;
+	margin-top:150px;
+	margin-right:150px;
+	margin-bottom:150px;
+}
+
+label{
+	font-family:Times New Roman;
+	color: black;
+}
+a{
+	color:black;
+}
+h1{
+	font-family:Arial;
+	color:white;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+ <link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel ="stylesheet" type="text/css">
+ <link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="modal-dialog text-center">
+		<div class="col-sm-8 main-section">
+			<div class="modal-content">
+				
+				<form class="col-12" th:action="@{/login}" method="post">
+					<div class="form-group" id="user-group">
+						<input type="number" class="form-control" placeholder="DNI" name="dni" />
+					</div>
+					<div class="form-group" id="contrasena-group">
+						<input type="password" class="form-control" placeholder="CONTRASEÑA" name="contrasena" />
+					</div>
+					<br>
+					<button type="submit" class="btn btn-dark"><i class="fas fa-sign-in-alt"></i><b> Ingresar </b></button>
+				</form>
+				<div class="col-12">
+					<li class="nav-item"><a class="nav-link active" href="/nuevoUsuario">¿No tienes cuenta? Crear cuenta</a></li>
+				</div>
+				<div th:if="${param.error}" class="alert alert-danger" role="alert">
+					Dni o contraseña invalidos
+				</div>
+				<div th:if="${param.logout}" class="alert alert-success" role="alert">
+					Has cerrado sesion
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br>
+
+</body>
+</html>
