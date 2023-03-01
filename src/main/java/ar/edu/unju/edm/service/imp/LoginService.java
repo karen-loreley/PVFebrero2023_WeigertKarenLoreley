@@ -26,7 +26,7 @@ public class LoginService implements UserDetailsService{
 		// TODO Auto-generated method stub
 		
 		//busqueda del usuario
-		Usuario usuarioEncontrado = usuarioRepository.findById(Integer.parseInt(dni)).orElseThrow(()->new UsernameNotFoundException("Usuario Invalido"));
+		Usuario usuarioEncontrado = usuarioRepository.findById(Long.parseLong(dni)).orElseThrow(()->new UsernameNotFoundException("Usuario Invalido"));
 		
 		//definir autorizaciones
 		List <GrantedAuthority> tipos = new ArrayList<>();

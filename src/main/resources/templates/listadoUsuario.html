@@ -21,6 +21,7 @@
 						<th scope="col">Email</th>
 						<th scope="col">Fecha de Nacimiento</th>
 						<th scope="col">Estado Actual</th>
+						<th scope="col">Tipo</th>
 						<th scope="col">Edicion</th> 
 					</tr>
 				</thead>
@@ -28,16 +29,17 @@
 					<tr th:if="${listaUsuario.empty}">
 						<td colspan="6">No hay usuarios cargados</td>
 					</tr>
-					<tr th:each="u : ${listadoUsuario}">
+					<tr th:each="u : ${listaUsuario}">
 						<td th:text="${u.dni}"></td>
 						<td th:text="${u.nombre}"></td>
 						<td th:text="${u.apellido}"></td>
 						<td th:text="${u.email}"></td>
 						<td th:text="${u.fechaNac}"></td>
 						<td th:text="${u.estado}"></td>
+						<td th:text="${u.tipo}"></td>
 						<td>
-							<a class="btn btn-warning" th:href="@{'/editarUsuario/'+${u.dni}}">Editar</a>
-							<a class="btn btn-danger" th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'"
+							<a class="btn btn-warning" th:href="@{'/editarusuario/'+${u.dni}}">Editar</a>
+							<a class="btn btn-danger" th:href="@{'/eliminarusuario/'+${u.dni}}"
 					    	>Eliminar</a>
 						</td>
 				

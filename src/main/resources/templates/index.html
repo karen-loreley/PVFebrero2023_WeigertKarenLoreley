@@ -10,9 +10,22 @@
 
 <h1>bienvenido Usuario Alumno: ingrese el nivel que dese realizar</h1>
 
+<h3>Elija un nivel</h3>
 
-
-
-
+<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="text-align: center;">
+				<br>
+				<h1 class="text-center">Elija el cuestionario</h1>
+				<br>
+				<img src="img/facil.jpg" class="rounded float-start" alt="imgfacil">
+				<a th:href="@{/nivelfacil/{nv}(nv=1)}"><button type="button" class="btn btn-success">Cuestionario </button></a>
+				<br>
+				<img src="img/dificil.jpg" class="rounded float-end" alt="imgdificil">
+				<a th:href="@{/niveldificil/{nv}(nv=1)}"><button type="button" class="btn btn-danger">Cuestionario2</button></a>
+				<br>
+			</div>
+    </div>
+</div>
 </body>
 </html>

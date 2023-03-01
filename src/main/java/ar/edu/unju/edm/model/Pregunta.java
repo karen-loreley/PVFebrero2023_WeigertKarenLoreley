@@ -20,37 +20,44 @@ public class Pregunta {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name= "codPregunta")
 	private Long codPregunta;
-	
 	@NotEmpty
 	private String enunciado;
-	
 	@NotNull
-	private int Nivel;
-	
+	private Integer nivel;
 	@NotEmpty
 	private String opcion1;
-	
 	@NotEmpty
 	private String opcion2;
-	
 	@NotEmpty
 	private String opcion3;
-	
 	@NotEmpty
 	private String opcion4;
-	
 	@NotEmpty
 	private String opcionCorrecta;
-	
 	@NotEmpty
 	private int puntaje;
-	
 	private Boolean estadoPregunta;
-	
 	
 	
 	public Pregunta() {
 	}
+
+	public Pregunta(Long codPregunta, @NotEmpty String enunciado, @NotNull Integer nivel, @NotEmpty String opcion1,
+			@NotEmpty String opcion2, @NotEmpty String opcion3, @NotEmpty String opcion4,
+			@NotEmpty String opcionCorrecta, @NotEmpty int puntaje, Boolean estadoPregunta) {
+		this.codPregunta = codPregunta;
+		this.enunciado = enunciado;
+		this.nivel = nivel;
+		this.opcion1 = opcion1;
+		this.opcion2 = opcion2;
+		this.opcion3 = opcion3;
+		this.opcion4 = opcion4;
+		this.opcionCorrecta = opcionCorrecta;
+		this.puntaje = puntaje;
+		this.estadoPregunta = estadoPregunta;
+	}
+
+
 
 
 	public Long getCodPregunta() {
@@ -72,14 +79,13 @@ public class Pregunta {
 		this.enunciado = enunciado;
 	}
 
-
-	public int getNivel() {
-		return Nivel;
+	public Integer getNivel() {
+		return nivel;
 	}
 
 
-	public void setNivel(int nivel) {
-		Nivel = nivel;
+	public void setNivel(Integer nivel) {
+		this.nivel = nivel;
 	}
 
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.Usuario;
 import ar.edu.unju.edm.service.IUsuarioService;
-import ar.edu.unju.edm.until.ListaUsuario;
 import ar.edu.unju.edm.repository.UsuarioRepository;
 
 @Service
@@ -18,8 +17,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	//private static final Log KAREN = LogFactory.getLog(UsuarioController.class);
 	
 	
-	@Autowired
-	ListaUsuario lista;
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
@@ -27,33 +24,22 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	@Override
 	public void guardarusuario(Usuario usuarioparaguardar) {
 		// TODO Auto-generated method stub
-		usuarioparaguardar.setEstado(true);
 		//lista.getListado().add(usuarioparaguardar);
 		String pw=usuarioparaguardar.getContrasena();
 		BCryptPasswordEncoder coder = new BCryptPasswordEncoder(4);
 		
 		usuarioparaguardar.setContrasena(coder.encode(pw));
+		usuarioparaguardar.setEstado(true);
 		usuarioRepository.save(usuarioparaguardar);
-		
 	}
 	
 	
-	
 	@Override
-	public List<Usuario> mostrarusuarios() {
+	public List<Usuario> mostrarUsuarios() {
 		// TODO Auto-generated method stub
 	 List<Usuario> auxiliar =new ArrayList<>();
 	 List<Usuario> auxiliar2 = new ArrayList<>();
-	 
-	 /*
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getEstado()==true){
-				
-				auxiliar.add(lista.getListado().get(i));
-			}
-		};
-		return auxiliar;
-		*/
+	
 	auxiliar=(List<Usuario>) usuarioRepository.findAll();
 	for(int i = 0 ;i<auxiliar.size();i++) {
 		
@@ -65,7 +51,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
 }
 	
 	@Override
-	public void eliminarusuario(Integer dni) throws Exception  {
+	public void eliminarusuario(Long dni) {
 		// TODO Auto-generated method stub
 		Usuario auxiliar = new Usuario();
 		auxiliar = buscarusuario(dni);
@@ -75,27 +61,28 @@ public class IUsuarioServiceImp implements IUsuarioService{
   
 	}
 
-
+	/*@Override
+	public Usuario modificarusuario(Usuario usuario) {
+		return usuarioRepository.save(usuario);
+	}
+	
 	@Override
-	public void modificarusuario(Usuario usuario) {
-		System.out.println("ingresando al metodo modificar usuario"+usuario.getEmail());
+	public Usuario buscarusuario(Integer dni) {
 		
-		usuarioRepository.save(usuario);
-
-		System.out.println("saliendo del metodo modificar usuario");
+		
+		return usuarioRepository.findById(dni).get();
+	}*/
+	
+	@Override
+	public Usuario modificarusuario(Usuario usuario) {
+		return usuarioRepository.save(usuario);
 	}
 
-	
-	
-	
 	@Override
-	public Usuario buscarusuario(Integer dni) throws Exception {
-		
-		Usuario auxiliar = new Usuario();
+	public Usuario buscarusuario(Long dni) {
 		
 		
-		auxiliar=usuarioRepository.findById(dni).orElseThrow(()->new Exception("usuario no encontrado"));
-		return auxiliar;
+		return usuarioRepository.findById(dni).get();
 	}
 	
 	

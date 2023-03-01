@@ -27,32 +27,33 @@ public class Autentication implements AuthenticationSuccessHandler{
 		// TODO Auto-generated method stub
 		
 		
-		Boolean tipoCliente=false, tipoAdmin=false;
+		Boolean estudiante=false, docente=false;
 		
 		
 		Collection<?extends GrantedAuthority> autorizaciones = authentication.getAuthorities();
 		
 		for(GrantedAuthority grantedAuthority:autorizaciones) {
-			if(grantedAuthority.getAuthority().equals("CLIENTE")) { //en mayuscula
-				tipoCliente=true;
+			if(grantedAuthority.getAuthority().equals("ESTUDIANTE")) { //en mayuscula
+				estudiante=true;
 				break;
 			}else {
-				if(grantedAuthority.getAuthority().equals("ADMIN")) { //en mayuscula
-					tipoAdmin=true;
+				if(grantedAuthority.getAuthority().equals("DOCENTE")) { //en mayuscula
+					docente=true;
 					break;
 				}
 			}
 			
 		}
 		
-		if(tipoCliente) {
+		if(estudiante) {
 			redirectStrategy.sendRedirect(request, response, "/index");
 		}else {
-			if(tipoAdmin) {
+			if(docente) {
 				redirectStrategy.sendRedirect(request, response, "/registroAdmin");
 			}
 		}
 		
+	  
 	}
 	
 }

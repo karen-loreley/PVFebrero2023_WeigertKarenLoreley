@@ -71,12 +71,12 @@ public String saveUser(@Valid  @ModelAttribute ("usuario")Usuario usuarioparagua
 @GetMapping("/listadoUsuario")//entra
 public ModelAndView showUser() {
 	ModelAndView vista = new ModelAndView("listadoUsuario");
-	vista.addObject("listaUsuario", usuarioService.mostrarusuarios());
+	vista.addObject("listaUsuario", usuarioService.mostrarUsuarios());
 	return vista;	
 }
 
 @RequestMapping("/eliminarusuario/{id}")//se recibe
-public String eliminar(@PathVariable Integer id, Model model) {
+public String eliminar(@PathVariable Long id, Model model) {
 	try {
 		usuarioService.eliminarusuario(id);
 	}catch(Exception error) {
@@ -91,42 +91,57 @@ public String eliminar(@PathVariable Integer id, Model model) {
 
 
 @GetMapping("/editarusuario/{dni}")//se recibe
-public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable (name="dni") Integer dni) throws Exception {
+public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable (name="dni") Long dni) throws Exception {
 	Usuario usuarioEncontrado =new Usuario();
 	usuarioEncontrado = usuarioService.buscarusuario(dni);	
 	ModelAndView modelView = new ModelAndView("cargarusuario");
 	modelView.addObject("usuario", usuarioEncontrado);
-	KAREN.error("saliendo del metodo: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ usuarioEncontrado.getDni());
+	KAREN.error("saliendo del metodo: editar"+ usuarioEncontrado.getDni());
 	modelView.addObject("editMode",true);		
 	return modelView;
-	}
+}/*
+@GetMapping("/editar/{dni}")
+public String mostrarFormularioDeEditar(@PathVariable (name="dni") Integer dni, Model modelo) throws Exception {
+	modelo.addAttribute("usuario", usuarioService.buscarusuario(dni));
+	return "cargarusuario"; 
+}
 
+@PostMapping("/usuarios/{id}")
+public String actualizarUsuarios(@PathVariable (name="dni") Integer dni, @ModelAttribute("usuario") Usuario usuario, Model modelo) throws Exception {
+	Usuario usuarioExistente = usuarioService.buscarusuario(dni);
+	usuarioExistente.setDni(dni);
+	usuarioExistente.setNombre(usuario.getNombre());
+	usuarioExistente.setApellido(usuario.getApellido());
+	usuarioService.modificarusuario(usuarioExistente);
+	return "redirect:/listadoUsuario";
+}
 
-@PostMapping("/editarusuario")
-public ModelAndView postEditarUsuario(@ModelAttribute("usuarioF") Usuario usuarioModificado,BindingResult result) {		
+*/@PostMapping("/editarusuario")
+public ModelAndView postEditarUsuario(@ModelAttribute("usuario") Usuario usuariomodificar,BindingResult result) {		
 			
 		
 	if(result.hasErrors()){
 		KAREN.fatal("Error de validacion");
-		ModelAndView vista = new ModelAndView("cargarUsuario");
-		vista.addObject("usuario", usuarioModificado);
+		ModelAndView vista = new ModelAndView("cargarusuario");
+		vista.addObject("usuario", usuariomodificar);
 		vista.addObject("editMode",true);
 		return vista;
 	}
 	try{
-		usuarioService.modificarusuario(usuarioModificado);
+		usuarioService.modificarusuario(usuariomodificar);
 	}catch(Exception error){
-		ModelAndView vista = new ModelAndView("cargarUsuario");
+		ModelAndView vista = new ModelAndView("cargarusuario");
 		vista.addObject("formUsuarioErrorMessage", error.getMessage());
-		vista.addObject("usuario", usuarioModificado);
+		vista.addObject("usuario", usuariomodificar);
 		vista.addObject("editMode",true);
 		KAREN.error("Usted esta saliendo del metodo: editar usuario");
 		return vista;
 	}
-	 KAREN.info("DNI de usuarioparamod "+ usuarioModificado.getDni());
-	 KAREN.info("Nombre de usuarioparamod "+ usuarioModificado.getNombre());
+	
+	 KAREN.info("DNI de usuarioparamod "+ usuariomodificar.getDni());
+	 KAREN.info("Nombre de usuarioparamod "+ usuariomodificar.getNombre());
 	ModelAndView vista1 = new ModelAndView("listadoUsuario");		
-	vista1.addObject("listaUsuario", usuarioService.mostrarusuarios());		
+	vista1.addObject("listaUsuario", usuarioService.mostrarUsuarios());		
 	vista1.addObject("formUsuarioErrorMessage","El Usuario fue modificado Correctamente");
 	
 	return vista1;

@@ -9,14 +9,11 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.edm.model.Pregunta;
 import ar.edu.unju.edm.repository.PreguntaRepository;
 import ar.edu.unju.edm.service.IPreguntaService;
-import ar.edu.unju.edm.until.ListaPregunta;
 
 @Service
 public class IPreguntaServiceImp implements IPreguntaService{
 	
 	
-	@Autowired
-	ListaPregunta lista;
 	@Autowired
 	PreguntaRepository preguntaRepository;
 	
@@ -29,33 +26,30 @@ public class IPreguntaServiceImp implements IPreguntaService{
 	}
 
 	@Override
-	public void modificarPregunta(Pregunta pregunta) {
+	public Pregunta actulizarPregunta(Pregunta pregunta) {
 
-		pregunta.setEstadoPregunta(true);
-		preguntaRepository.save(pregunta);
+		return preguntaRepository.save(pregunta);
 		
 	}
 	
-	@Override
-	public void eliminarPregunta(Long codPregunta) throws Exception {
-		
-		Pregunta aux =new Pregunta();
-		aux =buscarPregunta(codPregunta);
-		aux.setEstadoPregunta(false);
-		preguntaRepository.save(aux);
-		
-	}
+	 @Override
+		public Pregunta obtenerPregunta(Long id) {
+			return preguntaRepository.findById(id).get();
+		}
 
 	@Override
-	public Pregunta buscarPregunta(Long codPregunta) throws Exception {
-		
-		Pregunta encontrada = new Pregunta();
-		encontrada=preguntaRepository.findById(codPregunta).orElseThrow(()->new Exception("Pregunta no encontrada"));
-		return encontrada;
+	public Pregunta buscarPregunta(Integer nivel,int i) {
+		List<Pregunta> preguntas=listadoPregunta(nivel);
+		Pregunta encontrar=null;
+		for(int j=0;j<i;j++) {
+			encontrar=preguntas.get(j);
+		}
+		return encontrar;
 	}
+	
 
 	@Override
-	public List<Pregunta> listadoPregunta() {
+	public List<Pregunta> listadoPregunta(Integer nivel) {
 		// TODO Auto-generated method stub
 		
 		List<Pregunta> aux = new ArrayList<>();
@@ -63,13 +57,12 @@ public class IPreguntaServiceImp implements IPreguntaService{
 		
 		aux=(List<Pregunta>) preguntaRepository.findAll();
 		for(int i=0;i<aux.size();i++) {
-			if(aux.get(i).getEstadoPregunta()==true) {
+			if(aux.get(i).getNivel().equals(nivel)) {
 				aux2.add(aux.get(i));
 			}
 		}
 		
 		return aux2;
 	}
-	
 
 }

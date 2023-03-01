@@ -18,7 +18,7 @@
 					<div th:insert="/layoust/hader :: header "></div>
 				
 						<form class="form" role="form" autocomplete="off" th:object="${usuario}"
-							th:action="${editMode}? @{/modificarUsuario} : @{/guardarusuario}"method ="post">
+							th:action="${editMode}? @{/modificarusuario} : @{/guardarusuario}"method ="post">
   
   								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{contrasena}">
 								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{dni}">
@@ -65,13 +65,13 @@
   								</div>
   					
   								<div class="custom-control custom-radio">
-  									<input class="custom-control-input" type="radio" name="tipo" id="CLIENTE" value="CLIENTE" th:if="${editMode==false}">
-  									<label class="custom-control-label" for="CLIENTE" th:if="${editMode==false}">CLIENTE</label>
+  									<input class="custom-control-input" type="radio" name="tipo" id="ESTUDIANTE" value="ESTUDIANTE" th:if="${editMode==false}">
+  									<label class="custom-control-label" for="ESTUDIANTE" th:if="${editMode==false}">CLIENTE</label>
 								</div>
 					
 								<div class="custom-control custom-radio">
- 						 			<input class="custom-control-input" type="radio" name="tipo" id="ADMIN" value="ADMIN" th:if="${editMode==false}">
-  									<label class="custom-control-label" for="ADMIN" th:if="${editMode==false}">ADMINISTRADOR</label>
+ 						 			<input class="custom-control-input" type="radio" name="tipo" id="DOCENTE" value="DOCENTE" th:if="${editMode==false}">
+  									<label class="custom-control-label" for="DOCENTE" th:if="${editMode==false}">DOCENTEs</label>
 								</div>  					
 								
 								<div class="custom-control custom-radio">

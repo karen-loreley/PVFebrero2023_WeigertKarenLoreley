@@ -10,8 +10,10 @@ import ar.edu.unju.edm.model.Pregunta;
 public interface IPreguntaService {
 
 	public void guardarPregunta(Pregunta preguntaparaguardar);
-	public void modificarPregunta(Pregunta pregunta);
-	public void eliminarPregunta(Long codPregunta) throws Exception;
-	public Pregunta buscarPregunta(Long codPregunta) throws Exception;
-	public List<Pregunta> listadoPregunta(); 
+	public Pregunta actulizarPregunta(Pregunta pregunta);
+	public Pregunta obtenerPregunta(Long id);
+	public Pregunta buscarPregunta(Integer nivel,int i);
+	public List<Pregunta> listadoPregunta(Integer nivel); 
+	
+
 }
