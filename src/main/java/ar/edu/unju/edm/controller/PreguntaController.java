@@ -49,7 +49,7 @@ public class PreguntaController {
 		KAREN.info("ingresando al metodo: cargarPregunta");
 		Pregunta pregunta=new Pregunta();
 		modelo.addAttribute("pregunta", pregunta);
-		return "crear_pregunta";
+		return "crearpregunta";
 	}
 	
 	@PostMapping("/guardarPregunta")
@@ -64,13 +64,13 @@ public class PreguntaController {
 	public String listarPregunta(Model model) {
 		model.addAttribute("preguntas1",preguntaService.listadoPregunta(1) );
 	    model.addAttribute("preguntas2", preguntaService.listadoPregunta(2));
-	    return "listadoPregunta";
+	    return "listadoPreguntas";
 	  }
 	
 	@RequestMapping("/editPregunta/{codPregunta}")
 	public String editarPregunta(Model modelo,@PathVariable Long codPregunta){	
 		modelo.addAttribute("pregunta", preguntaService.obtenerPregunta(codPregunta));
-		return "crear_preguntas"; 
+		return "crearpreguntas"; 
 	}
 	
 	@PostMapping("/editarPregunta/{id}")
@@ -87,12 +87,12 @@ public class PreguntaController {
 	        .getAuthentication();
 	    UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	    Usuario userEnSesion = usuarioServicio.buscarusuario(Long.parseLong(userDetail.getUsername()));
-	    ModelAndView vista = new ModelAndView("elegirnivel");
+	    ModelAndView vista = new ModelAndView("index");
 	    vista.addObject("sesion", userEnSesion);
 	    return vista;
 	  }
 
-	  @GetMapping("/nivel1/{nv}")
+	  @GetMapping("/nivelfacil/{nv}")
 	  public ModelAndView Nivel1(@PathVariable(name = "nv") Integer id) {
 	    UsuarioPregunta aux = new UsuarioPregunta();
 	    Authentication auth = SecurityContextHolder
@@ -127,7 +127,7 @@ public class PreguntaController {
 	    }
 	  }
 
-	  @GetMapping("/nivel2/{nv}")
+	  @GetMapping("/niveldificil/{nv}")
 	  public ModelAndView Nivel2(@PathVariable(name = "nv") Integer id) {
 	    UsuarioPregunta aux = new UsuarioPregunta();
 	    Authentication auth = SecurityContextHolder

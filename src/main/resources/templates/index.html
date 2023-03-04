@@ -8,24 +8,53 @@
 </head>
 <body>
 
-<h1>bienvenido Usuario Alumno: ingrese el nivel que dese realizar</h1>
-
-<h3>Elija un nivel</h3>
-
+<nav class="navbar navbar-expand-md bg-dark navbar-dark" th:object="${sesion}">
+		<a class="navbar-brand" href="#">Bienvenido Usuario Alumno</a>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/vernota1}">Puntaje Nivel Facil</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/vernota2}">Puntaje Nivel Dificil</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/login?logout}">Deslogueo</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
 <div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="text-align: center;">
-				<br>
-				<h1 class="text-center">Elija el cuestionario</h1>
-				<br>
-				<img src="img/facil.jpg" class="rounded float-start" alt="imgfacil">
-				<a th:href="@{/nivelfacil/{nv}(nv=1)}"><button type="button" class="btn btn-success">Cuestionario </button></a>
-				<br>
-				<img src="img/dificil.jpg" class="rounded float-end" alt="imgdificil">
-				<a th:href="@{/niveldificil/{nv}(nv=1)}"><button type="button" class="btn btn-danger">Cuestionario2</button></a>
-				<br>
-			</div>
-    </div>
+<center><h1>Bienvenido Usuario Alumno: ingrese el nivel que dese realizar</h1>
+
+<br>
+<h2>Elija un nivel</h2></center>
 </div>
+<br>
+<br>
+<br>
+
+<center>
+    <div class="row">
+        <div class="col-18 col-sm-12 col-xl-6 celda1">
+        <img src="img/facil.jpg" class="rounded float-start" alt="imgfacil" width="250px" height="250px">
+		
+		</div>
+        <div class="col-18 col-sm-12 col-xl-6 celda2">
+        <img src="img/dificil.jpg" class="rounded float-end" alt="imgdificil" width="250px" height="250px">
+		
+        </div>
+    </div>
+</center>
+<br>
+
+
+<center>
+		<div class="row">
+			<div class="col-18 col-sm-12 col-xl-6 celda1">
+			<a th:href="@{/nivelfacil/{nv}(nv=1)}"><button type="button" class="btn btn-success">Nivel Facil</button></a>
+			</div>
+			<div class="col-18 col-sm-12 col-xl-6 celda2">
+			<a th:href="@{/niveldificil/{nv}(nv=1)}"><button type="button" class="btn btn-danger">Nivel Dificil</button></a>
+			</div>
+		</div>
+    
+</center>
 </body>
 </html>

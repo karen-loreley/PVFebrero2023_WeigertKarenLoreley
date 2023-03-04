@@ -14,8 +14,6 @@ import ar.edu.unju.edm.repository.UsuarioRepository;
 
 @Service
 public class IUsuarioServiceImp implements IUsuarioService{
-	//private static final Log KAREN = LogFactory.getLog(UsuarioController.class);
-	
 	
 	
 	@Autowired
@@ -23,8 +21,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	
 	@Override
 	public void guardarusuario(Usuario usuarioparaguardar) {
-		// TODO Auto-generated method stub
-		//lista.getListado().add(usuarioparaguardar);
 		String pw=usuarioparaguardar.getContrasena();
 		BCryptPasswordEncoder coder = new BCryptPasswordEncoder(4);
 		
@@ -61,18 +57,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
   
 	}
 
-	/*@Override
-	public Usuario modificarusuario(Usuario usuario) {
-		return usuarioRepository.save(usuario);
-	}
-	
-	@Override
-	public Usuario buscarusuario(Integer dni) {
-		
-		
-		return usuarioRepository.findById(dni).get();
-	}*/
-	
 	@Override
 	public Usuario modificarusuario(Usuario usuario) {
 		return usuarioRepository.save(usuario);

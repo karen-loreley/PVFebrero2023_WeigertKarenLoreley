@@ -18,7 +18,7 @@
 					<div th:insert="/layoust/hader :: header "></div>
 				
 						<form class="form" role="form" autocomplete="off" th:object="${usuario}"
-							th:action="${editMode}? @{/modificarusuario} : @{/guardarusuario}"method ="post">
+							th:action="${editMode}? @{/editarusuario} : @{/guardarusuario}"method ="post">
   
   								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{contrasena}">
 								<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{dni}">

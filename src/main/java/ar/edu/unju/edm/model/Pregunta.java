@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -23,6 +25,8 @@ public class Pregunta {
 	@NotEmpty
 	private String enunciado;
 	@NotNull
+	@Min (value=0, message="El nivel debe ser 1 o 2")
+	@Max (value=3, message="El nivel debe ser 1 o 2")
 	private Integer nivel;
 	@NotEmpty
 	private String opcion1;
@@ -34,8 +38,8 @@ public class Pregunta {
 	private String opcion4;
 	@NotEmpty
 	private String opcionCorrecta;
-	@NotEmpty
-	private int puntaje;
+	@NotNull
+	private Integer puntaje;
 	private Boolean estadoPregunta;
 	
 	
@@ -44,7 +48,7 @@ public class Pregunta {
 
 	public Pregunta(Long codPregunta, @NotEmpty String enunciado, @NotNull Integer nivel, @NotEmpty String opcion1,
 			@NotEmpty String opcion2, @NotEmpty String opcion3, @NotEmpty String opcion4,
-			@NotEmpty String opcionCorrecta, @NotEmpty int puntaje, Boolean estadoPregunta) {
+			@NotEmpty String opcionCorrecta, @NotEmpty Integer puntaje, Boolean estadoPregunta) {
 		this.codPregunta = codPregunta;
 		this.enunciado = enunciado;
 		this.nivel = nivel;
@@ -139,12 +143,12 @@ public class Pregunta {
 	}
 
 
-	public int getPuntaje() {
+	public Integer getPuntaje() {
 		return puntaje;
 	}
 
 
-	public void setPuntaje(int puntaje) {
+	public void setPuntaje(Integer puntaje) {
 		this.puntaje = puntaje;
 	}
 

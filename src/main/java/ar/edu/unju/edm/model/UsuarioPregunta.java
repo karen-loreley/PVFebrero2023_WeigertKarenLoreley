@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,10 +23,10 @@ public class UsuarioPregunta {
 	  (strategy=GenerationType.IDENTITY)
 	  private Long id;
 	  private Integer total;
-	  @OneToOne(fetch = FetchType.LAZY)
+	  @ManyToMany(fetch = FetchType.LAZY)
 	  @JoinColumn(name = "dni")
 	  private Usuario usuario;
-	  @OneToOne(fetch = FetchType.LAZY)
+	  @ManyToMany(fetch = FetchType.LAZY)
 	  @JoinColumn(name ="CodPregunta")
 	  private Pregunta pregunta;
 	  private Integer nivel;

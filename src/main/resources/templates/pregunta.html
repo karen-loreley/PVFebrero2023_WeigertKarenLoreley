@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registro de preguntas</title>
+<link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel ="stylesheet" type="text/css">
+ <link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+ <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+    <div class="container" th:object="${pregunta}">
+       
+        <br>
+        <form th:action="${nivel}?@{/subirpuntaje/{nv}(nv=${nro}+1)}:@{/subirpuntaje2/{nv}(nv=${nro}+1)}" th:object="${puntaje}" method="POST">
+            <input type="hidden" th:field="*{nivel}">
+            <input type="hidden" th:field="*{usuario}">
+            <input type="hidden" th:field="*{pregunta}">
+            <br>
+            <h3 th:text="${pregunta.enunciado}"></h3>
+            <label>
+                <input th:field="*{total}" type="radio" value="0" th:text="${pregunta.opcion1}" >
+            </label>
+            <br>
+            <label>
+                <input th:field="*{total}" type="radio" value="0" name="p0" th:text="${pregunta.opcion2}">
+            </label>
+            <br>
+            <label>
+                <input th:field="*{total}" type="radio" th:value="${pregunta.puntaje}" name="p0" th:text="${pregunta.opcionCorrecta}"> 
+            </label>
+            <br>
+            <label>
+                <input th:field="*{total}" type="radio" value="0" name="p0" th:text="${pregunta.Opcion3}">
+            </label>
+            <br>
+            <label>
+                <input th:field="*{total}" type="radio" value="0" name="p0" th:text="${pregunta.Opcion4}">
+            </label>
+            <br>
+                <div class="box-footer" >
+                    <button class="btn btn-primary">Siguiente pregunta</button>
+                </div>
+            </form>
+        <br>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>

@@ -8,7 +8,7 @@ import ar.edu.unju.edm.model.Pregunta;
 
 
 @Repository
-public interface PreguntaRepository extends JpaRepository<Pregunta,Long> {
+public interface PreguntaRepository extends JpaRepository<Pregunta, Long> {
 
 
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Resultados</title>
+<link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel ="stylesheet" type="text/css">
+ <link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<br>
+				<h1 class="text-center">Aqui estan los resultados</h1>
+                <h2 class="text-center" style="color: rgb(0, 0, 0);">Este es el puntaje</h2>
+                <h1 class="text-center" style="color: rgb(255, 0, 0);" th:text="${puntaje}"></h1>
+                <br>
+				<div style="text-align: center;">
+                <a th:href="@{/listarusuarios}"> <button type="button" class="btn btn-info">Volver</button></a>
+                <br>
+				<br>
+				</div>
+			</div>
+    </div>
+</div>
+</body>
+</html>
