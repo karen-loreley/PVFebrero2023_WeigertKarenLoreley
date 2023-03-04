@@ -67,10 +67,10 @@ public class PreguntaController {
 	    return "listadoPreguntas";
 	  }
 	
-	@RequestMapping("/editPregunta/{codPregunta}")
+	@RequestMapping("/editarPregunta/{codPregunta}")
 	public String editarPregunta(Model modelo,@PathVariable Long codPregunta){	
 		modelo.addAttribute("pregunta", preguntaService.obtenerPregunta(codPregunta));
-		return "crearpreguntas"; 
+		return "crearpregunta"; 
 	}
 	
 	@PostMapping("/editarPregunta/{id}")
@@ -78,6 +78,20 @@ public class PreguntaController {
 		public String saveEditQuestion(@PathVariable Long id, @ModelAttribute("pregunta") Pregunta preguntaparamodificar, Model modelo) {
 			preguntaService.actulizarPregunta(preguntaparamodificar);
 			return "redirect:/listadoPreguntas";
+		}
+	
+	@RequestMapping("/eliminarpregunta/{id}")//se recibe
+	public String eliminar(@PathVariable Long id, Model model) {
+		try {
+			preguntaService.eliminarpregunta(id);
+		}catch(Exception error) {
+			KAREN.error("encontrando: en eliminar pregunta");
+		   model.addAttribute("formUsuarioErrorMessage", error.getMessage());
+		  return "redirect:/listadoPreguntas";
+		}
+		
+		return "redirect:/listadoPreguntas";
+		
 		}
 		
 	@GetMapping("/elegirNivel")
@@ -108,7 +122,7 @@ public class PreguntaController {
 	    aux.setNivel(1);
 	    aux.setUsuario(userEnSesion);
 	    aux.setPregunta(preguntaService.buscarPregunta(1, id));
-	    ModelAndView vista = new ModelAndView("pregunta1");
+	    ModelAndView vista = new ModelAndView("pregunta");
 	    vista.addObject("nro",id);
 	    vista.addObject("pregunta", aux.getPregunta());
 	    vista.addObject("puntaje", aux);
@@ -120,10 +134,10 @@ public class PreguntaController {
 	  public String subirnivel(@ModelAttribute("puntaje") UsuarioPregunta puntaje, @PathVariable(name = "nv") Integer id) {
 	    if(id<=5){
 	    usuarioPreguntaServicio.guardarPregunta(puntaje);
-	      return "redirect:/nivel1/{nv}";
+	      return "redirect:/nivelfacil/{nv}";
 	    }else{
 	      usuarioPreguntaServicio.guardarPregunta(puntaje);
-	    return "redirect:/vernota1";
+	    return "redirect:/resultados";
 	    }
 	  }
 
@@ -143,7 +157,7 @@ public class PreguntaController {
 	    aux.setNivel(2);
 	    aux.setUsuario(userEnSesion);
 	    aux.setPregunta(preguntaService.buscarPregunta(2, id));
-	    ModelAndView vista = new ModelAndView("pregunta1");
+	    ModelAndView vista = new ModelAndView("pregunta");
 	    vista.addObject("nro",id);
 	    vista.addObject("pregunta", aux.getPregunta());
 	    vista.addObject("puntaje", aux);
@@ -155,7 +169,7 @@ public class PreguntaController {
 	  public String subirnivel2(@ModelAttribute("puntaje") UsuarioPregunta puntaje, @PathVariable(name = "nv") Integer id) {
 	    if(id<=5){
 	    usuarioPreguntaServicio.guardarPregunta(puntaje);
-	      return "redirect:/nivel2/{nv}";
+	      return "redirect:/niveldificil/{nv}";
 	    }else{
 	      usuarioPreguntaServicio.guardarPregunta(puntaje);
 	    return "redirect:/vernota2";

@@ -7,7 +7,9 @@
 <link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Lista de Usuarios</h1>
+<center><h1>Lista de Usuarios</h1></center>
+<br>
+<br>
 
 <div class="container">
 		
@@ -39,8 +41,9 @@
 						<td th:text="${u.tipo}"></td>
 						<td>
 							<a class="btn btn-warning" th:href="@{'/editarusuario/'+${u.dni}}">Editar</a>
-							<a class="btn btn-danger" th:href="@{'/eliminarusuario/'+${u.dni}}"
-					    	>Eliminar</a>
+							<a class="btn btn-danger" th:href="@{'/eliminarusuario/'+${u.dni}}">Eliminar</a>
+							<a th:href="@{/vernota/{id}(id=${u.dni})}" class="btn btn-secondary">Facil</a>
+							<a th:href="@{/vernota2/{id}(id=${u.dni})}" class="btn btn-secondary">Dificil</a>
 						</td>
 				
 					</tr>

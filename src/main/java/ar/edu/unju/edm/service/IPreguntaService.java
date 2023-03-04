@@ -14,6 +14,6 @@ public interface IPreguntaService {
 	public Pregunta obtenerPregunta(Long id);
 	public Pregunta buscarPregunta(Integer nivel,int i);
 	public List<Pregunta> listadoPregunta(Integer nivel); 
-	
+	public void eliminarpregunta (Long id);
 
 }

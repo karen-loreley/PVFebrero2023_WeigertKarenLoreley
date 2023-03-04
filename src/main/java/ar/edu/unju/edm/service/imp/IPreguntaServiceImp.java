@@ -64,5 +64,15 @@ public class IPreguntaServiceImp implements IPreguntaService{
 		
 		return aux2;
 	}
+	@Override
+	public void eliminarpregunta(Long id) {
+		
+		Pregunta auxiliar = new Pregunta();
+		auxiliar = obtenerPregunta(id);
+		auxiliar.setEstadoPregunta(false);
+	
+		preguntaRepository.save(auxiliar);
+  
+	}
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
 
@@ -23,12 +25,14 @@ public class UsuarioPregunta {
 	  (strategy=GenerationType.IDENTITY)
 	  private Long id;
 	  private Integer total;
-	  @ManyToMany(fetch = FetchType.LAZY)
+	  @OneToOne(fetch = FetchType.LAZY)
 	  @JoinColumn(name = "dni")
 	  private Usuario usuario;
-	  @ManyToMany(fetch = FetchType.LAZY)
+	  @OneToOne(fetch = FetchType.LAZY)
 	  @JoinColumn(name ="CodPregunta")
 	  private Pregunta pregunta;
+	  @Min (value=0, message="El nivel debe ser 1 o 2")
+	  @Max (value=3, message="El nivel debe ser 1 o 2")
 	  private Integer nivel;
 	  
 	  
