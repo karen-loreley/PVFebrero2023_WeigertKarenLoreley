@@ -24,13 +24,12 @@ public class IUsuarioPreguntaServicioimp implements IUsuarioPreguntasService{
 		auxiliar=(List<UsuarioPregunta>) repository.findAll();
 		for(int i=0; i < auxiliar.size();i++) {
 			
-			if(auxiliar.get(i).getUsuario().getDni()==id &&auxiliar.get(i).getNivel().equals(nivel)) {
+			if(auxiliar.get(i).getUsuario().getDni()==id && auxiliar.get(i).getNivel().equals(nivel)) {
 				auxiliar2.add(auxiliar.get(i));
 			}
 		}
 		return auxiliar2;
 	}
-
 
 	@Override
 	public Integer SumarPuntaje(List<UsuarioPregunta> puntaje) {
@@ -49,8 +48,6 @@ public class IUsuarioPreguntaServicioimp implements IUsuarioPreguntasService{
 		
 	}
 	
-
-
 	 @Override
 	  public void reinicioPuntaje(Long id, Integer nivel) {
 	    List<UsuarioPregunta> auxiliar = new ArrayList<>();

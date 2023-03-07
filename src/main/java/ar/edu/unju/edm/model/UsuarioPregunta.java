@@ -7,10 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -31,8 +33,9 @@ public class UsuarioPregunta {
 	  @OneToOne(fetch = FetchType.LAZY)
 	  @JoinColumn(name ="CodPregunta")
 	  private Pregunta pregunta;
-	  @Min (value=0, message="El nivel debe ser 1 o 2")
-	  @Max (value=3, message="El nivel debe ser 1 o 2")
+	  @NotNull
+	  @Min (value=1, message="El nivel debe ser 1 o 2")
+	  @Max (value=2, message="El nivel debe ser 1 o 2")
 	  private Integer nivel;
 	  
 	  
@@ -40,15 +43,14 @@ public class UsuarioPregunta {
 		
 	}
 
-
-	public UsuarioPregunta(Long id, Integer total, Usuario usuario, Pregunta pregunta, Integer nivel) {
+	public UsuarioPregunta(Long id, Integer total, Usuario usuario, Pregunta pregunta,
+			@NotNull @Min(value = 1, message = "El nivel debe ser 1 o 2") @Max(value = 2, message = "El nivel debe ser 1 o 2") Integer nivel) {
 		this.id = id;
 		this.total = total;
 		this.usuario = usuario;
 		this.pregunta = pregunta;
 		this.nivel = nivel;
 	}
-
 
 	public Long getId() {
 		return id;

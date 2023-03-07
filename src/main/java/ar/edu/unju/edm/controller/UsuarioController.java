@@ -151,6 +151,7 @@ UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	modelo.addAttribute("puntaje", usuarioPreguntaServicio.SumarPuntaje(usuarioPreguntaServicio.buscarUsuario(Long.parseLong(userDetail.getUsername()), 1)));
 	return "resultados"; 
 }
+
 @GetMapping("/vernota2")
 public String vernota2(Model modelo) {
 	Authentication auth = SecurityContextHolder
@@ -160,19 +161,21 @@ UserDetails userDetail = (UserDetails) auth.getPrincipal();
 	modelo.addAttribute("puntaje", usuarioPreguntaServicio.SumarPuntaje(usuarioPreguntaServicio.buscarUsuario(Long.parseLong(userDetail.getUsername()), 2)));
 	return "resultados"; 
 }
+
 @GetMapping("/vernota/{id}")
 public String vernotadocente(Model modelo,@PathVariable Long id) {
 	Usuario aux=new Usuario();
 	aux=service.buscarusuario(id);
 	modelo.addAttribute("puntaje", usuarioPreguntaServicio.SumarPuntaje(usuarioPreguntaServicio.buscarUsuario(aux.getDni(), 1)));
-	return "resultados_docente"; 
+	return "resultado_docente"; 
 }
+
 @GetMapping("/vernota2/{id}")
 public String vernota2docente(Model modelo,@PathVariable Long id) {
 	Usuario aux=new Usuario();
 	aux=service.buscarusuario(id);
 	modelo.addAttribute("puntaje", usuarioPreguntaServicio.SumarPuntaje(usuarioPreguntaServicio.buscarUsuario(aux.getDni(), 2)));
-	return "resultados_docente"; 
+	return "resultado_docente"; 
 }
 
 

@@ -25,8 +25,8 @@ public class Pregunta {
 	@NotEmpty
 	private String enunciado;
 	@NotNull
-	@Min (value=0, message="El nivel debe ser 1 o 2")
-	@Max (value=3, message="El nivel debe ser 1 o 2")
+	@Min (value=1, message="El nivel debe ser 1 o 2")
+	@Max (value=2, message="El nivel debe ser 1 o 2")
 	private Integer nivel;
 	@NotEmpty
 	private String opcion1;
@@ -44,6 +44,7 @@ public class Pregunta {
 	
 	
 	public Pregunta() {
+		
 	}
 
 	public Pregunta(Long codPregunta, @NotEmpty String enunciado, @NotNull Integer nivel, @NotEmpty String opcion1,

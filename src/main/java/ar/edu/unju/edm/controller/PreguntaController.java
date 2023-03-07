@@ -137,7 +137,7 @@ public class PreguntaController {
 	      return "redirect:/nivelfacil/{nv}";
 	    }else{
 	      usuarioPreguntaServicio.guardarPregunta(puntaje);
-	    return "redirect:/resultados";
+	    return "redirect:/vernota1";
 	    }
 	  }
 

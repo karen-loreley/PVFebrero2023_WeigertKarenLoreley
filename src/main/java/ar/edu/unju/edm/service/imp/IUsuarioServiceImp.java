@@ -29,7 +29,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
 		usuarioRepository.save(usuarioparaguardar);
 	}
 	
-	
 	@Override
 	public List<Usuario> mostrarUsuarios() {
 		// TODO Auto-generated method stub
@@ -48,7 +47,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	
 	@Override
 	public void eliminarusuario(Long dni) {
-		// TODO Auto-generated method stub
+
 		Usuario auxiliar = new Usuario();
 		auxiliar = buscarusuario(dni);
 		auxiliar.setEstado(false);

@@ -54,12 +54,10 @@ public class ConfiguracionWeb extends WebSecurityConfigurerAdapter{
 	LoginService userDetailsService;
 
 	@Autowired
-	public void configuracionGlobal(AuthenticationManagerBuilder auth)
-			throws Exception {
+	public void configuracionGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("***Inicio del Usuario***");
 
 		auth.userDetailsService(userDetailsService);
 	}
-
 
 }

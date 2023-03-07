@@ -7,8 +7,9 @@
  <link th:href="@{/css/estilo.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>crear preguntas</h1>
-
+<center><h1>Crear preguntas</h1></center>
+<br>
+<br>
 <div class="container">
 		<div class="row">
 			<div
@@ -24,31 +25,40 @@
 					</div>
 					<br>
 						<div class="form-group">
-							<label>Nivel : </label> <input type="number"  th:field="*{nivel}" class="form-control" placeholder="Ingrese el Nivel">
+							<label>Nivel : </label> <input type="number"  th:field="*{nivel}" class="form-control" 
+							placeholder="Ingrese el Nivel">
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('nivel')}"th:errors="*{nivel}"></div>
+						</div>
+						
+						<br>
+						<div class="form-group">
+							<label>Opcion 1 : </label> <input type="text"  th:field="*{opcion1}" class="form-control" 
+							placeholder="Ingrese la opcion 1">
 						</div>
 						<br>
 						<div class="form-group">
-							<label>Opcion 1 : </label> <input type="text"  th:field="*{opcion1}" class="form-control" placeholder="Ingrese la opcion 1">
+							<label>Opcion 2 : </label> <input type="text"  th:field="*{opcion2}" class="form-control" 
+							placeholder="Ingrese la opcion 2">
 						</div>
 						<br>
 						<div class="form-group">
-							<label>Opcion 2 : </label> <input type="text"  th:field="*{opcion2}" class="form-control" placeholder="Ingrese la opcion 2">
+							<label>Opcion 3 : </label> <input type="text"  th:field="*{opcion3}" class="form-control" 
+							placeholder="Ingrese la opcion 3">
 						</div>
 						<br>
 						<div class="form-group">
-							<label>Opcion 3 : </label> <input type="text"  th:field="*{opcion3}" class="form-control" placeholder="Ingrese la opcion 3">
+							<label>Opcion 4 : </label> <input type="text"  th:field="*{opcion4}" class="form-control" 
+							placeholder="Ingrese la opcion 4">
 						</div>
 						<br>
 						<div class="form-group">
-							<label>Opcion 4 : </label> <input type="text"  th:field="*{opcion4}" class="form-control" placeholder="Ingrese la opcion 4">
+							<label>Opcion Correcta : </label> <input type="text"  th:field="*{opcionCorrecta}" 
+							class="form-control" placeholder="Ingrese la opcion Correcta">
 						</div>
 						<br>
 						<div class="form-group">
-							<label>Opcion Correcta : </label> <input type="text"  th:field="*{opcionCorrecta}" class="form-control" placeholder="Ingrese la opcion Correcta">
-						</div>
-						<br>
-						<div class="form-group">
-							<label>Puntaje : </label> <input type="number"  th:field="*{puntaje}" class="form-control" placeholder="Ingrese el puntaje">
+							<label>Puntaje : </label> <input type="number"  th:field="*{puntaje}" class="form-control" 
+							placeholder="Ingrese el puntaje">
 						</div>
 						<br>
 						<div class="box-footer">

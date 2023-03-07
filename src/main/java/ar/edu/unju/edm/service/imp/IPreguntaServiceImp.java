@@ -13,7 +13,6 @@ import ar.edu.unju.edm.service.IPreguntaService;
 @Service
 public class IPreguntaServiceImp implements IPreguntaService{
 	
-	
 	@Autowired
 	PreguntaRepository preguntaRepository;
 	
@@ -46,7 +45,6 @@ public class IPreguntaServiceImp implements IPreguntaService{
 		}
 		return encontrar;
 	}
-	
 
 	@Override
 	public List<Pregunta> listadoPregunta(Integer nivel) {
@@ -57,13 +55,14 @@ public class IPreguntaServiceImp implements IPreguntaService{
 		
 		aux=(List<Pregunta>) preguntaRepository.findAll();
 		for(int i=0;i<aux.size();i++) {
-			if(aux.get(i).getNivel().equals(nivel)) {
+			if(aux.get(i).getNivel().equals(nivel) && aux.get(i).getEstadoPregunta().equals(true)) {
 				aux2.add(aux.get(i));
 			}
 		}
 		
 		return aux2;
 	}
+	
 	@Override
 	public void eliminarpregunta(Long id) {
 		

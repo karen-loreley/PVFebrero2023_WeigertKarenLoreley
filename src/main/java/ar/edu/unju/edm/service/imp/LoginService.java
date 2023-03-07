@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 import ar.edu.unju.edm.model.Usuario;
 import ar.edu.unju.edm.repository.UsuarioRepository;
 
@@ -23,9 +24,8 @@ public class LoginService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		
-		//busqueda del usuario
+
+		System.out.println(dni);
 		Usuario usuarioEncontrado = usuarioRepository.findById(Long.parseLong(dni)).orElseThrow(()->new UsernameNotFoundException("Usuario Invalido"));
 		
 		//definir autorizaciones
@@ -39,4 +39,5 @@ public class LoginService implements UserDetailsService{
 		
 		return usuarioEnSesion;
 	}
+  
 }
