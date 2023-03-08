@@ -23,8 +23,7 @@ import org.springframework.stereotype.Component;
 public class UsuarioPregunta {
 
 	  @Id
-	  @GeneratedValue
-	  (strategy=GenerationType.IDENTITY)
+	  @GeneratedValue(strategy=GenerationType.IDENTITY)
 	  private Long id;
 	  private Integer total;
 	  @OneToOne(fetch = FetchType.LAZY)

@@ -24,7 +24,7 @@ public class IUsuarioPreguntaServicioimp implements IUsuarioPreguntasService{
 		auxiliar=(List<UsuarioPregunta>) repository.findAll();
 		for(int i=0; i < auxiliar.size();i++) {
 			
-			if(auxiliar.get(i).getUsuario().getDni()==id && auxiliar.get(i).getNivel().equals(nivel)) {
+			if(auxiliar.get(i).getUsuario().getDni().equals(id) && auxiliar.get(i).getNivel().equals(nivel)) {
 				auxiliar2.add(auxiliar.get(i));
 			}
 		}
